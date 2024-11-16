@@ -1,12 +1,21 @@
 provider "aws" {
-  region = local.region
+  region  = local.region
+  profile = "sso-madmin"
+  default_tags {
+    tags = {
+      GithubRepo = "github.com/rpgd60/ecs-blueprints"
+      Blueprint  = local.name
+      Solution   = "ec2-examples"
+      terraform = true
+    }
+  }
 }
 
 data "aws_availability_zones" "available" {}
 
 locals {
   name   = basename(path.cwd)
-  region = "us-west-2"
+  region = "eu-south-2" ## "us-west-2"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -20,9 +29,10 @@ locals {
     EOF
   EOT
 
+  # Added at provider level
   tags = {
-    Blueprint  = local.name
-    GithubRepo = "github.com/aws-ia/ecs-blueprints"
+    # Blueprint  = local.name
+    # GithubRepo = "github.com/rpgd60/ecs-blueprints"
   }
 }
 
