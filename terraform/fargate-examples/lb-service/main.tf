@@ -1,10 +1,11 @@
 provider "aws" {
   region = local.region
+  profile = "sso-madmin"
 }
 
 locals {
   name   = "ecsdemo-frontend"
-  region = "us-west-2"
+  region = "eu-south-2" ## "us-west-2"
 
   container_port = 3000 # Container port is specific to this app example
   container_name = "ecsdemo-frontend"
