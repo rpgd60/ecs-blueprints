@@ -1,5 +1,5 @@
 provider "aws" {
-  region = local.region
+  region  = local.region
   profile = "sso-madmin"
 }
 
@@ -36,7 +36,9 @@ module "ecs_cluster" {
     FARGATE      = {}
     FARGATE_SPOT = {}
   }
-
+  cluster_settings = [
+    [{ "name" : "containerInsights", "value" : "enabled" }]
+  ]
   tags = local.tags
 }
 
