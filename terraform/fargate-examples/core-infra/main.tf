@@ -43,7 +43,8 @@ module "ecs_cluster" {
 ################################################################################
 # Service Discovery
 ################################################################################
-
+# private DNS namespace that allows your ECS services to discover and communicate 
+# with each other within your VPC using DNS names.
 resource "aws_service_discovery_private_dns_namespace" "this" {
   name        = "default.${local.name}.local"
   description = "Service discovery <namespace>.<clustername>.local"
