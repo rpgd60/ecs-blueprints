@@ -44,7 +44,8 @@ Before deploying this example, ensure you have the following:
 3. Set local environment variable to reference deployed state bucket.
 
     ```
-    STATE_BUCKET=$(aws ssm get-parameters --names terraform_state_bucket --region us-west-2 | jq -r '.Parameters[0].Value')
+    REGION=eu-west-1
+    STATE_BUCKET=$(aws ssm get-parameters --names terraform_state_bucket --region $REGION | jq -r '.Parameters[0].Value')
     ```
 
 4. Deploy the CodePipeline which will deploy the required infrastructure.

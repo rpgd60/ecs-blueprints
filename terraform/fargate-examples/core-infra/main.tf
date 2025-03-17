@@ -1,13 +1,13 @@
 provider "aws" {
   region  = local.region
-  profile = "sso-madmin"
+  profile = "sso-course"
 }
 
 data "aws_availability_zones" "available" {}
 
 locals {
   name   = basename(path.cwd)
-  region = "eu-south-2" ## "us-west-2"
+  region = "eu-west-1" ## "us-west-2"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
